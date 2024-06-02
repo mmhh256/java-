@@ -105,6 +105,23 @@ private ChessBoard chessboard=new ChessBoard();//创建棋盘
 
         Graphics g = chessBoard.getGraphics();//设置画笔
 
+        GameMouse gameMouse=new GameMouse(chessboard,g);//添加鼠标监听器
+        //传递数据
+        chessboard.Data=gameMouse.Data;
+        //创建对象时将构造方法初始化
+        //将这里从窗口中获取得到的画笔用来给监听器中私有属性定义的画笔初始化
+        chessboard.addMouseListener(gameMouse);
+        //添加按钮监听器
+        start.addMouseListener(gameMouse);
+        regret.addMouseListener(gameMouse);
+        replay.addMouseListener(gameMouse);
+        exit.addMouseListener(gameMouse);
+        AI_play.addMouseListener(gameMouse);
+        human_play.addMouseListener(gameMouse);
+
+
+
+
 
 
 
