@@ -6,10 +6,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GameFrame extends JFrame{
-private  JFrame frame;//游戏界面窗口
-
-
-private ChessBoard chessboard=new ChessBoard();//创建棋盘
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -20,11 +16,11 @@ private ChessBoard chessboard=new ChessBoard();//创建棋盘
 
 
     public void init(){
-        frame=new JFrame("五子棋");//创建游戏界面窗口
+        //游戏界面窗口
+        JFrame frame = new JFrame("五子棋");//创建游戏界面窗口
         frame.setSize(1100,900);//设置界面的位置和大小
         frame.setLocationRelativeTo(null);//界面居中
         frame.setResizable(true);//不可改变界面大小
-        frame.setVisible(true);//设置界面可见
         frame.setAlwaysOnTop(true);//界面总是在最上面
         frame.setDefaultCloseOperation(3);//停止运行
 
@@ -74,50 +70,27 @@ private ChessBoard chessboard=new ChessBoard();//创建棋盘
         ChessBoard chessBoard = new ChessBoard();
         frame.add(chessBoard,BorderLayout.CENTER);//放在中间
         chessBoard.setBackground(Color.lightGray);//设置棋盘颜色
+        frame.setVisible(true);//设置界面可见
 
-         class MyButtonLister implements ActionListener {
-            //按钮处理事件类
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                Object obj=e.getSource();//获取事件源
-                if(obj==start) {//事件源是重新开始按钮
-                    System.out.println("重新开始");
-                }
-                else if(obj==regret) {//事件源是悔棋按钮
-                    System.out.println("悔棋！");
 
-                }
-                else if(obj==replay) {//事件源是退出按钮
-                    System.out.println("再来一局");
-                }
-                else if(obj==exit) {//事件源是退出按钮
-                    System.exit(0);
-                }
-                else if(obj==AI_play) {//事件源是退出按钮
-
-                }
-                else if(obj==human_play) {//事件源是退出按钮
-
-                }
-                }
-            }
 
         Graphics g = chessBoard.getGraphics();//设置画笔
 
-        GameMouse gameMouse=new GameMouse(chessboard,g);//添加鼠标监听器
+
+        GameMouse gameMouse=new GameMouse(chessBoard,g);//添加鼠标监听器
         //传递数据
-        chessboard.Data=gameMouse.Data;
+       chessBoard.Data=gameMouse.Data;
         //创建对象时将构造方法初始化
         //将这里从窗口中获取得到的画笔用来给监听器中私有属性定义的画笔初始化
-        chessboard.addMouseListener(gameMouse);
+        chessBoard.addMouseListener(gameMouse);
         //添加按钮监听器
-        start.addMouseListener(gameMouse);
-        regret.addMouseListener(gameMouse);
-        replay.addMouseListener(gameMouse);
-        exit.addMouseListener(gameMouse);
-        AI_play.addMouseListener(gameMouse);
-        human_play.addMouseListener(gameMouse);
+        start.addActionListener(gameMouse);
+        regret.addActionListener(gameMouse);
+        replay.addActionListener(gameMouse);
+        exit.addActionListener(gameMouse);
+        AI_play.addActionListener(gameMouse);
+        human_play.addActionListener(gameMouse);
+
 
 
 
@@ -192,4 +165,14 @@ private ChessBoard chessboard=new ChessBoard();//创建棋盘
 
 
     }
+    public void Win()
+    {
+        JFrame WIN= new JFrame("胜利");
+        WIN.setSize(300,300);
+        WIN.setLocationRelativeTo(null);
+        WIN.setDefaultCloseOperation(3);
+
+        WIN.setVisible(true);
+    }
+
 }

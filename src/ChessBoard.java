@@ -19,7 +19,7 @@ public class ChessBoard extends JPanel {
 
 
         for (int i = 0; i < line; i++) {
-            for (int j=0;j>line;j++){
+            for (int j=0;j<line;j++){
                 if (Data[i][j]==1)
                 {
                     g.setColor(Color.BLACK);
@@ -33,5 +33,5 @@ public class ChessBoard extends JPanel {
             }
 
         }
-    }
+   }
 }
